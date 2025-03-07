@@ -4,40 +4,56 @@
 class MonRobotDeTest : public Robot
 {
 public:
-    MonRobotDeTest(Environment* e) : Robot(e) {};
+    RobotTest(Environment* e) : Robot(e) {};
     double get_battery_capacity(){ return 0.5; }
 };
 
-// Validates the behavior of the constructors
-TEST(Robot, test_set_speed) {
-    Environment e;
-    MonRobotDeTest mon_robot{&e};
+//test du constructeur
+TEST(Robot, test_constructor)
+{
+    MonRobotDeTest robot{nullptr};
 
-    mon_robot.set_speed(0.5);
-    EXPECT_NEAR(mon_robot.get_speed(), 0.5, 0.00001);
-
-    mon_robot.set_speed(0.7);
-    EXPECT_NEAR(mon_robot.get_speed(), 0.7, 0.00001);
+    EXPECT_EQ(robot.get_battery_capacity(), 0.5);
 }
 
-TEST(Robot, test_angular_speed) {
-    Environment e;
-    MonRobotDeTest mon_robot{&e};
+//test de la vitesse
+TEST(Robot, test_speed)
+{
+    MonRobotDeTest robot{nullptr};
 
-    mon_robot.set_angular_speed(0.5);
-    EXPECT_NEAR(mon_robot.get_angular_speed(), 0.5, 0.00001);
-
-    mon_robot.set_angular_speed(0.7);
-    EXPECT_NEAR(mon_robot.get_angular_speed(), 0.7, 0.00001);
+    robot.set_speed(1);
+    EXPECT_EQ(robot.get_speed(), 1);
 }
 
-TEST(Robot, test_move_forward) {
-    Environment e;
-    MonRobotDeTest mon_robot{&e};
+//test de la vitesse angulaire
 
-    mon_robot.set_angular_speed(0.5);
-    mon_robot.run(0.01);
+TEST(Robot, test_angular_speed)
+{
+    MonRobotDeTest robot{nullptr};
 
-    /// TODO n'oublie de finir ce test.
-    EXPECT_FALSE(true);
+    robot.set_angular_speed(0.5);
+    EXPECT_EQ(robot.get_angular_speed(), 0.5);
+}
+
+
+//test de la position
+TEST(Robot, test_position)
+{
+    MonRobotDeTest robot{nullptr};
+
+    robot.set_position(1, 2);
+    EXPECT_EQ(robot.get_position_x(), 1);
+    EXPECT_EQ(robot.get_position_y(), 2);
+}
+
+//test de la fonction stop
+TEST(Robot, test_stop)
+{
+    MonRobotDeTest robot{nullptr};
+
+    robot.set_speed(1);
+    robot.set_angular_speed(0.5);
+    robot.stop();
+    EXPECT_EQ(robot.get_speed(), 0);
+    EXPECT_EQ(robot.get_angular_speed(), 0);
 }

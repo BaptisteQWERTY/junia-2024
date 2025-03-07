@@ -49,6 +49,7 @@ void Robot::run(double dt)
     m_y += sin(m_theta) * m_speed * dt ;
     m_theta += m_omega * dt ;
 }
+<<<<<<< HEAD
 
 void Robot::planter() {
     int deplacement = rand() % 4 ;
@@ -86,3 +87,5 @@ void Robot::planter() {
     }
 }
 
+=======
+>>>>>>> 913ef72053885ad8d287b1eaa19c3c34d83d9f1d

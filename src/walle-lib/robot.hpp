@@ -1,6 +1,12 @@
 #pragma once 
 #include "environnement.hpp"
 
+<<<<<<< HEAD
+=======
+#include "environnement.hpp"
+
+/// Décrire un objet.
+>>>>>>> 913ef72053885ad8d287b1eaa19c3c34d83d9f1d
 class Robot
 {
 
